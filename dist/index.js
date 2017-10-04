@@ -43,11 +43,20 @@ ipcMain.on('todo:add', function (event, todo) {
     addWindow.close();
 });
 
+function clearTodos() {
+    mainWindow.webContents.send('todo:clear');
+}
+
 var menuTemplate = [{
     label: 'File',
     submenu: [{ label: 'New Todo',
         click: function click() {
             createAddWindow();
+        }
+    }, {
+        label: 'Clear Todos',
+        click: function click() {
+            clearTodos();
         }
     }, {
         label: 'Quit',

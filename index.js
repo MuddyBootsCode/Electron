@@ -36,6 +36,10 @@ ipcMain.on('todo:add', (event, todo) => {
     addWindow.close();
 });
 
+function clearTodos() {
+    mainWindow.webContents.send('todo:clear');
+}
+
 const menuTemplate = [
 
     {
@@ -43,6 +47,10 @@ const menuTemplate = [
         submenu: [
             { label: 'New Todo',
                 click() { createAddWindow() }
+            },
+            {
+              label: 'Clear Todos',
+                click() { clearTodos() }
             },
             {
               label: 'Quit',
